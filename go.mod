@@ -1,6 +1,6 @@
-module github.com/secret-dev87/go-ethereum-api
+module github.com/secret-dev87/golang-ethereum-api
 
-go 1.18
+go 1.21.5
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
