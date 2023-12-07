@@ -20,6 +20,17 @@ func (h ApiRouter) InstallRouter(app *fiber.App) {
 
 	api.Get("/wallet-logic-address", controllers.GetCustodianWalletLogicAddress)
 	api.Get("/escrow-address", controllers.GetEscrowAddress)
+
+	escrow := api.Group("/escrow")
+
+	escrow.Post("/set-usdc-address", controllers.SetUSDCTokenAddress)
+	api.Get("/get-usdc-address", controllers.GetUSDCAddress)
+
+	api.Post("/factory/new-wallet/:uuid", controllers.NewWallet)
+	api.Get("/factory/wallet/:uuid", controllers.GetWallet)
+
+	api.Post("/wallet/order/new/:address", controllers.NewBuyOrder)
+	api.Post("/wallet/balance/:address", controllers.GetWalletUSDCBalance)
 }
 
 func NewApiRouter() *ApiRouter {
