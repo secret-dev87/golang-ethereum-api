@@ -13,6 +13,13 @@ func (h ApiRouter) InstallRouter(app *fiber.App) {
 	api := app.Group("/api/v1", limiter.New())
 
 	api.Get("/", controllers.RenderHello)
+
+	deploy := api.Group("/deploy")
+	deploy.Post("/usdc", controllers.DeployUSDC)
+	deploy.Post("/factory", controllers.DeployFactory)
+
+	api.Get("/wallet-logic-address", controllers.GetCustodianWalletLogicAddress)
+	api.Get("/escrow-address", controllers.GetEscrowAddress)
 }
 
 func NewApiRouter() *ApiRouter {

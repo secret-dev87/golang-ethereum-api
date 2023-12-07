@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/secret-dev87/golang-ethereum-api/pkg/blockchain"
 	"github.com/secret-dev87/golang-ethereum-api/pkg/env"
 	"github.com/secret-dev87/golang-ethereum-api/pkg/router"
 )
@@ -18,6 +19,8 @@ func NewApplication() *fiber.App {
 	//Middleware
 	app.Use(recover.New())
 	app.Use(logger.New())
+
+	blockchain.New()
 
 	//Setup routes
 	router.InstallRouter(app)
